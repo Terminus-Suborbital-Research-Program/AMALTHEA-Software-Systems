@@ -1,0 +1,9 @@
+@startuml Arduino HAL
+
+package "Arduino"{
+    class SerialPIO
+}
+
+hide empty members
+
+@enduml

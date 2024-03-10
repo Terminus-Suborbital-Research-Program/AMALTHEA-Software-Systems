@@ -1,0 +1,21 @@
+@startuml Pi3BPlus
+
+Object Raspberry_Pi
+Object USB_Stack
+Object Wifi_Stack
+Object IMX219
+Object ArduCam_Encoder
+Object LAN
+Object VPN
+Object Development_PC
+
+
+USB_Stack --* Raspberry_Pi
+ArduCam_Encoder --* USB_Stack
+Wifi_Stack --* Raspberry_Pi
+IMX219 --* ArduCam_Encoder
+LAN --* Wifi_Stack
+VPN --* LAN
+Development_PC --* VPN
+
+@enduml

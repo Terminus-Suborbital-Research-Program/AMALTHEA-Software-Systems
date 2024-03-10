@@ -1,0 +1,32 @@
+@startuml Deployer Library
+
+!include Adafruit_BNO055.puml
+
+package "Terminus-Deployer" {
+    class IMU_Data {
+        + float[3] accel
+        + float[3] gyro
+        + float[3] mag
+        + float[3] vel
+        + float temp
+    }
+
+    class I2C_IMU {
+        - Adafruit_BNO055 bno
+        + IMU_Data getIMUData()
+    }
+
+    class Motor {
+        - int mtr_pin
+        - int mtr_speed
+        + Motor()
+        + begin(int max_speed)
+        + spin_to(int speed)
+    }
+
+    Adafruit_BNO055 --* I2C_IMU
+}
+
+hide empty members
+
+@enduml

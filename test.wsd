@@ -1,0 +1,29 @@
+@startuml nominalPacket
+
+Participant Deployer as d
+Participant PicoSat1 as p1
+Participant PicoSat2 as p2
+Participant PicoSat3 as p3
+Participant PicoSat4 as p4
+
+group Data packet from PicoSat1
+    d -> p1: Request data
+    p1 -> d: Data
+end
+
+group Data packet from PicoSat2
+    d -> p2: Request data
+    p2 -> d: Data
+end
+
+group Data packet from PicoSat3
+    d -> p3: Request data
+    p3 -> d: Data
+end
+
+group Data packet from PicoSat4
+    d -> p4: Request data
+    p4 -> d: Data
+end
+
+@enduml

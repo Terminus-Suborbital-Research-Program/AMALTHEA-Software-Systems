@@ -1,0 +1,27 @@
+@startuml Network
+
+nwdiag {
+    group {
+        color = "#ffcccc";
+        PicoSat1;
+        PicoSat2;
+        PicoSat3;
+        PicoSat4;
+    }
+
+    network JUPITER_UART {
+        Ejector;
+        JUPITER
+    }
+
+    network HC12 {
+        Ejector;
+        Deployer;
+        PicoSat1;
+        PicoSat2;
+        PicoSat3;
+        PicoSat4;
+    }
+}
+
+@enduml

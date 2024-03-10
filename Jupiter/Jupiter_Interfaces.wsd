@@ -1,0 +1,35 @@
+@startuml Jupiter Interfaces
+
+nwdiag {
+    group {
+        color = "#ffcccc";
+        Magnetometer [address = 0x11];
+        High-G_Accelerometer [address = 0x18];
+        Low-G_Accelerometer;
+        IMU;
+        Environmental_Sensor [address = 0x76];
+        ASPCU;
+    }
+
+    network UART {
+        FCU;
+        Ejector
+    }
+
+    network I2C {
+        FCU [shape = "node"];
+        Magnetometer;
+        High-G_Accelerometer;
+        Low-G_Accelerometer;
+        IMU;
+        Environmental_Sensor;
+        ASPCU;
+    }
+
+    network RS232 {
+        FCU;
+        LV;
+    }
+}
+
+@enduml

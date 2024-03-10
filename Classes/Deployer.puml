@@ -1,0 +1,30 @@
+@startuml Deployer Structure
+
+!include Terminus-Deployer.puml
+!include TERMINUS-PICO.puml
+
+package "Main.cpp" {
+    package "Core 0" {
+        bno <|-- I2C_IMU : instance
+        picosatRelease <|-- R_L_Servo : instance
+        dummyMassRelease <|-- R_L_Servo : instance
+        motor <|-up- Motor : instance
+        rbf <|-- RBF : instance
+    }
+
+    package "Core 1" {
+        packetHandler <|-- SerialDevice : instance
+        packetHandler *-- radio
+
+        radio <|-- HC12 : instance
+    }
+
+    currentIncomingPacket <|-- Packet : instance
+    currentOutgoingPacket <|-- Packet : instance
+    packetAvailable : Bool
+    sendPacket : Bool
+}
+
+hide empty members
+
+@enduml

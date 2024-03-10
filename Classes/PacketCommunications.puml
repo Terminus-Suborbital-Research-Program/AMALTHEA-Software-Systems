@@ -1,0 +1,80 @@
+@startuml Packet Communications Library
+
+!include TERMINUS-PICO.puml
+
+package "PacketCommunications" {
+    Class SerialDevice {
+        - HC12 *node
+        - ByteQueue InputQueue
+        - ByteQueue OutputQueue
+        + void SendData()
+        + Byte ReceiveData()
+        + bool DataAvailable()
+        + void TransmitByte()
+        + void SetNode(HC12 *node)
+        + void CheckForData()
+        + void SendPacket(Packet p)
+    }
+
+    class ByteQueue {
+        - Byte items[MAX_QUEUE_SIZE];
+        + ByteQueue();
+        + ByteQueue Clone() const;
+        + bool IsFull() const;
+        + bool IsEmpty() const;
+        + void Enqueue(Byte b);
+        + Byte Dequeue();
+        + void Clear();
+        + bool PacketReady();
+        + void PrintQueue();
+    }
+
+    class DataTypeContainer {
+        - Byte data[BYTES_PER_ITEM];
+        + DataTypeContainer();
+        + DataTypeContainer(ByteQueue &q);
+        + DataTypeContainer(int i);
+        + DataTypeContainer(unsigned int i);
+        + DataTypeContainer(float f);
+        + DataTypeContainer(DeviceEnumerator d);
+        + DataTypeContainer(CommandEnumerator c);
+        + int toInt();
+        + DataTypeContainer clone();
+        + unsigned int toUnsignedInt();
+        + float toFloat();
+        + DeviceEnumerator toDeviceEnumerator();
+        + CommandEnumerator toCommandEnumerator();
+        + void stackOnQueue(ByteQueue* q);
+    }
+
+    class Packet {
+        + DeviceEnumerator sourceDevice, destinationDevice
+        + CommandEnumerator command
+        + int packetCount
+        + float accelX, accelY, accelZ
+        + float gyroX, gyroY, gyroZ
+        + float magX, magY, magZ
+        + float temp
+        + bool valid
+        + Packet();
+        + Packet(ByteQueue &q);
+        + ByteQueue Serialize();
+        + int CalculateCRCRemainder();
+    }
+
+    Class Byte
+
+    Byte --* ByteQueue
+    Byte --* DataTypeContainer
+    Byte --*SerialDevice
+
+    HC12 --* SerialDevice
+    ByteQueue --* SerialDevice
+    ByteQueue --* Packet
+    DataTypeContainer --* Packet
+}
+
+hide empty methods
+hide empty fields
+
+@enduml
