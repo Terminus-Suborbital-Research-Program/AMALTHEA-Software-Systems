@@ -1,4 +1,4 @@
-# Rust Style Guide for Embedded Aerospace Mission
+# Rust Style Guide for AMALTHEA
 
 ## Table of Contents
 1. [Introduction](#introduction)
