@@ -9,7 +9,7 @@
 6. [Testing](#testing)
 
 ## Introduction
-This style guide is intended for developers working on AMALTHEA Rust. The guidelines presented here aim to promote code clarity, maintainability, and safety in line with AMALTHEA and future projects based on it's codebase.
+This style guide is intended for developers working on AMALTHEA in Rust. The guidelines presented here aim to promote code clarity, maintainability, and safety in line with AMALTHEA and future projects based on it's codebase.
 
 ## Code Formatting
 - **Indentation:** Use 4 spaces for indentation, not tabs.
