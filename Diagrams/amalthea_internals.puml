@@ -1,0 +1,8 @@
+@startuml jupiter_internals
+
+!include amalthea_overview.puml
+!include jupiter_internals.puml
+!include ejector_internals.puml
+!include icarus_internals.puml
+
+@enduml

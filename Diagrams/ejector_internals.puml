@@ -1,0 +1,8 @@
+@startuml jupiter_internals
+
+!include amalthea_overview.puml
+
+erp2040 <-down-> ehc12 : UART
+erp2040 -left-> eservos : PWM
+
+@enduml

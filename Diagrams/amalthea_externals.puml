@@ -1,0 +1,8 @@
+@startuml jupiter_internals
+
+!include amalthea_internals.puml
+
+ihc12 <-> ehc12 : Radio
+erp2040 <-> atmega : UART
+
+@enduml
