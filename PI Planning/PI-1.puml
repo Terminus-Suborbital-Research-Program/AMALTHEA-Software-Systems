@@ -1,0 +1,32 @@
+@startwbs PI-1
+
+* PI-1
+** Deliverables
+*** State Machine Prototypes
+**** JUPITER
+**** Ejector
+**** Icarus
+*** CONOPS Timing Diagrams
+*** Stylesheet
+*** Github
+**** Repositories
+**** Project
+
+** Research
+*** Architecture Trades
+**** Full-Scale Platforms
+***** Linux + Real Time Patch
+***** RROS
+**** Embedded Platforms
+***** Custom Scheduler
+***** Embassy 
+**** DevOps
+
+** Subteam Coordination
+*** Science
+**** Auxillary Experiment Requirements
+**** CFD Sim Support
+*** Electrical
+**** Component Selection
+
+@endwbs
