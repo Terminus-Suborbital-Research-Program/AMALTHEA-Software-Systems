@@ -1,0 +1,11 @@
+@startuml jupiter_internals
+
+!include amalthea_overview.puml
+
+stm32 <-down-> irp2040 : SPI
+irp2040 -right-> ihc12 : UART
+stm32 -up-> esc : I2C
+stm32 -up-> ads : I2C
+esc --> acs : PWM
+
+@enduml

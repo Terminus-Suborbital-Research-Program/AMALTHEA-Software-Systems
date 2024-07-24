@@ -1,0 +1,9 @@
+@startuml jupiter_internals
+
+!include amalthea_externals.puml
+!include nasa.puml
+
+gse -up-> atmega : GPIO
+atmega -down-> downlink : RS-232
+
+@enduml

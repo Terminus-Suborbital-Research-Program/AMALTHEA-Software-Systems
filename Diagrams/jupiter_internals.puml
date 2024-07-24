@@ -1,0 +1,8 @@
+@startuml jupiter_internals
+
+!include amalthea_overview.puml
+
+rpi <-down-> atmega : I2C
+rpi --> javionics : I2C
+
+@enduml

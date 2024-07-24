@@ -1,0 +1,26 @@
+@startuml overview
+
+package "AMALTHEA" {
+    package "JUPITER" {
+        node "Raspberry Pi" as rpi
+        node "ATMEGA" as atmega
+        collections "Jupiter Avionics" as javionics
+    }
+
+    package "Ejector" {
+        node "RP2040" as erp2040
+        queue "Ejector HC12" as ehc12
+        control "Ejection Servos" as eservos
+    }
+
+    package "Icarus" {
+        node "STM32" as stm32
+        node "RP2040" as irp2040
+        queue "Icarus HC12" as ihc12
+        collections "ESC (x3)" as esc
+        collections "ADS" as ads
+        control "ACS Motors (x3)" as acs
+    }
+}
+
+@enduml

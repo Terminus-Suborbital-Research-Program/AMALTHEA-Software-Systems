@@ -1,0 +1,6 @@
+@startuml nasa
+package "NASA Avionics" {
+    queue "RS-232 Downlink" as downlink
+    collections "GSE/TE Lines" as gse
+}
+@enduml
