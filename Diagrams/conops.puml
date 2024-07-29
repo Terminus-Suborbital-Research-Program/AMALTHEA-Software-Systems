@@ -1,0 +1,87 @@
+@startuml ConOps
+
+binary "GSE-1" as gse1
+binary "TE-1" as te1
+
+robust "Icarus" as icarus
+robust "Ejector" as ejector
+robust "JUPITER" as jupiter
+robust "Relay" as relay
+
+binary "ESP32-Cam Power" as esp32
+binary "JUPITER Battery Latch" as latch
+
+scale 20 as 25 pixels
+
+@-140
+gse1 is low
+icarus is "Powered Off"
+jupiter is "Powered Off"
+ejector is "Powered Off"
+relay is "Powered Off"
+esp32 is low
+
+@-120
+gse1 is high
+jupiter is "Booting"
+ejector is "Stowed"
+
+@-110
+jupiter is "Pre-Launch Idle"
+
+@0
+jupiter is "Launch"
+
+@70
+esp32 is high
+
+@81
+te1 is high
+jupiter is "Skirt-Seperation"
+ejector is "Initiate Powerup"
+icarus is "Booting"
+
+@110
+jupiter is "Data Collection"
+ejector is "Eject"
+icarus is "Coast Phase 1"
+
+@115
+icarus is "Flap Deployment"
+
+@120
+icarus is "Orient Solar"
+
+@266
+icarus is "Orient Re-Entry"
+
+@281
+icarus is "Relay Deployment"
+relay is "Deployed"
+
+@286
+icarus is "Coast Phase 2"
+
+@305
+te1 is low
+jupiter is "Internal Power"
+latch is high
+
+@335
+gse1 is low
+
+@600
+jupiter is "Software Shutdown"
+
+@610
+jupiter is "Powered Off"
+ejector is "Powered Off"
+latch is low
+esp32 is low
+
+highlight -120 to 0 : Pre-Launch
+highlight 0 to 180 : Ascent
+highlight 180 to 240 : Apogee
+highlight 240 to 620 : Descent
+
+@enduml
