@@ -1,0 +1,21 @@
+@startuml Icarus
+[*] -down-> PoweredOff : start
+
+PoweredOff -down-> Booting : TE-1 high
+Booting -right-> CoastPhase1 : boot_complete
+CoastPhase1 -right-> FlapDeployment : t >= 115
+FlapDeployment -right-> OrientSolar : t >= 120
+OrientSolar -right-> OrientReEntry : t >= 266
+OrientReEntry --> RelayDeployment : t >= 281
+RelayDeployment --> CoastPhase2 : t >= 286
+CoastPhase2 -down-> PoweredOff : t >= 610
+
+Booting : Initialize systems
+CoastPhase1 : Prepare for maneuvers
+FlapDeployment : Deploy flaps
+OrientSolar : Solar panels orientation
+OrientReEntry : Position for re-entry
+RelayDeployment : Deploy relay
+CoastPhase2 : Final coast phase
+
+@enduml

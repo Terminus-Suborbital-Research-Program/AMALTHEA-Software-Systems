@@ -1,0 +1,12 @@
+@startuml Combined_Systems
+[*] --> PoweredOff : start
+
+PoweredOff -right-> Stowed : Power On
+Stowed -right-> InitiatePowerUp : Signal from JUPITER
+InitiatePowerUp --> Eject : Signal from JUPITER
+
+InitiatePowerUp : Power on Icarus
+Eject : Move servos to 
+Eject : ejection position
+
+@enduml

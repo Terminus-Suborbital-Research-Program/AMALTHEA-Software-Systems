@@ -1,0 +1,21 @@
+@startuml Jupiter
+[*] -down-> PoweredOff : GSE-1 high
+
+PoweredOff -down-> Booting
+Booting -right-> PreLaunchIdle
+PreLaunchIdle -right-> Launch : t >= 0
+Launch -right-> SkirtSeparation : TE-1 high
+SkirtSeparation -right-> DataCollection
+DataCollection --> InternalPower : TE-1 low
+InternalPower --> SoftwareShutdown : t >= 600
+SoftwareShutdown --> PoweredOff
+
+Booting : Linux system boots
+Booting : and starts program
+PreLaunchIdle : Telemetry starts
+SkirtSeparation : Indicate to Ejector
+DataCollection : Relay data
+InternalPower : Trigger battery latch
+SoftwareShutdown : Trigger off battery latch
+
+@enduml
