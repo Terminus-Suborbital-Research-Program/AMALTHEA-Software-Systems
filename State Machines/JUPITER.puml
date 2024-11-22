@@ -1,0 +1,41 @@
+@startuml JUPITER
+
+hide empty description
+
+PowerOn : Linux Boot
+Booting : Handoff to FSW
+PreLaunchIdle : Idles
+Launch : Detected by Accelerometer
+SkirtSeparation : Delayed by Timer
+InternalPower : Battery Latch Activated
+
+[*] --> PowerOn : GSE-1 High
+PowerOn -> Booting
+Booting -> PreLaunchIdle
+PreLaunchIdle -> Launch
+Launch -> SkirtSeparation : TE-1 High
+SkirtSeparation --> DeployableTrigger
+DeployableTrigger -> InternalPower : TE-2 High
+InternalPower -> [*]
+
+' Experimental Loop
+state Experiments {
+    SkirtSeparation --> Experiments
+    
+    Trigger : Run Experiment
+    Record : Record Data
+    Relay : Relay Data to Rocket
+
+    [*] --> Trigger : Spawned on timer
+    Trigger -> Record
+    Record -> Relay
+}
+
+' Deployables
+state Deployables {
+    DeployableTrigger --> Deployables
+
+    Deployables : Trigger Ejector
+}
+
+@enduml

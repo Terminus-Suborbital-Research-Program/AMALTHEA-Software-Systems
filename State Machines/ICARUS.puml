@@ -1,0 +1,66 @@
+@startuml Ejector
+
+hide empty description
+
+left to right direction
+
+state ICARUS {
+    Init : Set Up Systems
+    [*] -right-> Init
+
+    Init -right-> TargetPhases
+
+    state TargetPhases {
+        CoastPhaseOne : Coast from Vehicle for\nspace
+        OrientSolar : Orient to maximize\nsolar power
+        OrientReentry : Point to reentry AoA
+
+        [*] --> Detumble
+        Detumble --> CoastPhaseOne
+        CoastPhaseOne --> FlapDeployment
+        FlapDeployment --> OrientSolar
+        OrientSolar --> CoastPhaseTwo
+        CoastPhaseTwo --> OrientReentry
+        OrientReentry --> RelayDeployment
+        RelayDeployment --> CoastPhaseThree
+        CoastPhaseThree --> [*]
+    }
+
+    state GNC {
+        state Navigation {
+            [*] --> GetIMUData
+            [*] --> GetSolarData
+
+            GetSolarData --> SensorFusion
+            GetIMUData --> SensorFusion
+
+            SensorFusion --> CalculateGuidance
+
+            CalculateGuidance --> [*]
+        }
+
+        state Guidance {
+            [*] --> CalculateDifference
+            CalculateDifference --> GenerateChange
+            GenerateChange --> [*]
+        }
+
+        state Control {
+            [*] --> ManipulateReactionWheels
+            ManipulateReactionWheels --> [*]
+        }
+
+        Navigation --> Guidance
+        Guidance --> Control
+        Control --> Navigation
+    }
+}
+
+state Relay {
+    [*] --> PowerOn
+    PowerOn --> ReceiveData
+    ReceiveData --> TransmitData
+    TransmitData --> ReceiveData
+}
+
+@enduml

@@ -1,0 +1,34 @@
+@startuml Demo
+title RTIC Application Structure
+
+package "RTIC Application" {
+    component "Init Task" as init_task
+    component "Task A" as task_a
+    component "Task B" as task_b
+    component "Interrupt Handler" as interrupt_handler
+
+    database "Resource X" as resource_x
+    database "Resource Y" as resource_y
+
+    init_task --> resource_x : initializes
+    init_task --> resource_y : initializes
+
+    interrupt_handler --> task_a : triggers
+    task_a --> resource_x : reads/writes
+    task_a --> task_b : spawns
+    task_b --> resource_y : reads/writes
+}
+
+note left of init_task
+    The init task runs at startup and initializes resources.
+end note
+
+note right of task_a
+    Task A is triggered by Interrupt Handler.
+end note
+
+note bottom of resource_x
+    Shared resource protected by RTIC.
+end note
+
+@enduml

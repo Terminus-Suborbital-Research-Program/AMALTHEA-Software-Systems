@@ -1,0 +1,33 @@
+@startuml EJECTOR
+
+hide empty description
+
+[*] -right> Init : Power On
+
+Init : Initialize Flight Systems
+
+state WaitForEjection {
+    [*] -> ReceiveEjectionCommand
+    RespondEjectionCommand -> [*]
+    ReceiveEjectionCommand : Wait for Ejection Command
+    RespondEjectionCommand : Handshake for JUPITER
+    ReceiveEjectionCommand -> RespondEjectionCommand
+}
+
+state Ejection {
+    [*] -> PowerICARUSUp
+    PowerICARUSUp -> WaitForICARUSHandshake
+    WaitForICARUSHandshake -> OpenServos : Handshake Received
+    OpenServos -> CloseServos : 3s Delay
+    CloseServos -> [*]
+}
+
+state RelayLoop {
+    [*] -> WaitForData
+    WaitForData : Wait for Data on HC12
+    RelayData : Relay Data over UART
+    WaitForData -> RelayData : Data Ready
+    RelayData -> WaitForData : Data Sent
+}
+
+@enduml

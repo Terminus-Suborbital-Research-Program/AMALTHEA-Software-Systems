@@ -1,0 +1,21 @@
+@startuml infratracker
+
+concise "Active Tracking Burst" as I
+
+
+@100
+I is "Idle"
+note top of I : Repeated 5x between\nT+110 and T+305
+
+@110
+I is "10 Hz Capture"
+
+@+8
+I is "Processing"
+note top of I : Pending testing
+
+@+10
+I is "Idle"
+
+
+@enduml

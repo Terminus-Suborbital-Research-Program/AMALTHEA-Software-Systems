@@ -1,0 +1,15 @@
+@startuml infratracker
+
+concise "Pre Skirt-Seperation" as I
+
+scale 10 as 200 pixels
+
+@70
+I is "Baseline"
+note top of I : 10 Hz images,\nno tracking
+
+@+5
+I is "Idle"
+
+
+@enduml

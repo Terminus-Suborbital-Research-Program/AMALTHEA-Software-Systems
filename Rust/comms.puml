@@ -1,0 +1,18 @@
+@startuml comms
+skinparam classAttributeIconSize 0
+
+hide empty members
+
+interface PacketSerializable {
+    +to_packet() : Packet
+    
+}
+
+struct Packet {
+    payload: Vec<u8>
+    +into_packet() : Result<box<dyn PacketSerializable>, Error>
+}
+
+PacketSerializable <|-- Packet
+
+@enduml
